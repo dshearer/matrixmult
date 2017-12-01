@@ -19,12 +19,12 @@ func main() {
     waitGroup.Add(1)
     go func() {
         defer waitGroup.Done()
-        Consumer("output", ctx)
+        Producer("input", ctx)
     }()
     waitGroup.Add(1)
     go func() {
         defer waitGroup.Done()
-        Composer(ctx)
+        Dispatcher(ctx)
     }()
     waitGroup.Add(1)
     go func() {
@@ -39,12 +39,12 @@ func main() {
     waitGroup.Add(1)
     go func() {
         defer waitGroup.Done()
-        Dispatcher(ctx)
+        Composer(ctx)
     }()
     waitGroup.Add(1)
     go func() {
         defer waitGroup.Done()
-        Producer("input", ctx)
+        Consumer("output", ctx)
     }()
 
     waitGroup.Wait()
